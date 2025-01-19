@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://b5bph80niu45x"]
+
+[node name="Water" type="Polygon2D"]
+color = Color(0.122257, 0.517276, 1, 1)

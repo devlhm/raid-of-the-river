@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bgaqdbxf8bm36"]
+
+[node name="T" type="StaticBody2D" groups=["terrain"]]
+collision_layer = 515
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.31327, 0.750199, 0.40626, 1)

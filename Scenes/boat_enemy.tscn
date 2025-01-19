@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://bd4syotvcej4j"]
+
+[ext_resource type="Script" path="res://Scripts/BoatEnemy.cs" id="1_feqvw"]
+[ext_resource type="Texture2D" uid="uid://bpbr1e6qre8sc" path="res://Assets/ship_medium_body.png" id="2_02o75"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkwv6"]
+size = Vector2(25, 121.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_od0j7"]
+size = Vector2(35.5, 134)
+
+[node name="BoatEnemy" type="CharacterBody2D" node_paths=PackedStringArray("_raycast")]
+scale = Vector2(0.8, 0.8)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_feqvw")
+_speed = 100.0
+_raycast = NodePath("RayCast2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_02o75")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, -150)
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_jkwv6")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-0.249998, 7)
+shape = SubResource("RectangleShape2D_od0j7")

@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://dr1la34jka4ru"]
+
+[ext_resource type="Script" path="res://Scripts/Bullet.cs" id="1_gnqao"]
+[ext_resource type="Texture2D" uid="uid://v6tx4tt8m64l" path="res://Assets/blue_bullet.png" id="1_jgjk3"]
+
+[sub_resource type="Animation" id="Animation_yy3xo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_44j4y"]
+resource_name = "fade_in"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6i66l"]
+_data = {
+"RESET": SubResource("Animation_yy3xo"),
+"fade_in": SubResource("Animation_44j4y")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eddyg"]
+size = Vector2(4, 10)
+
+[node name="Area2D" type="Area2D" node_paths=PackedStringArray("_timer", "_animationPlayer")]
+modulate = Color(1, 1, 1, 0)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_gnqao")
+_timer = NodePath("Timer")
+_animationPlayer = NodePath("AnimationPlayer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.5708
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_jgjk3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6i66l")
+}
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_eddyg")

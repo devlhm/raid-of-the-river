@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cr8gq5fqlkc35"]
+
+[ext_resource type="Script" path="res://Scripts/ShootingComponent.cs" id="1_6gyno"]
+[ext_resource type="PackedScene" uid="uid://dr1la34jka4ru" path="res://Scenes/bullet.tscn" id="2_k6y2x"]
+
+[node name="ShootingComponent" type="Node2D"]
+position = Vector2(0, -39)
+script = ExtResource("1_6gyno")
+_bulletScene = ExtResource("2_k6y2x")
+_isPlayer = true
+_bulletTtl = 3.0

@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://cgrfth7qbc23r"]
+
+[ext_resource type="Script" path="res://Scripts/Terrain.cs" id="1_e2uvk"]
+[ext_resource type="Script" path="res://Scripts/Main.cs" id="1_ounfn"]
+[ext_resource type="PackedScene" uid="uid://bgaqdbxf8bm36" path="res://Scenes/terrain_poly.tscn" id="2_hy274"]
+[ext_resource type="PackedScene" uid="uid://b5bph80niu45x" path="res://Scenes/water.tscn" id="4_303fv"]
+[ext_resource type="PackedScene" uid="uid://bd4syotvcej4j" path="res://Scenes/boat_enemy.tscn" id="4_qtgvv"]
+[ext_resource type="PackedScene" uid="uid://8t1ffq885ink" path="res://Scenes/player.tscn" id="4_ropah"]
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("_scroll")]
+script = ExtResource("1_ounfn")
+_scroll = NodePath("Scroll")
+_scrollSpeed = 200.0
+
+[node name="Scroll" type="Node2D" parent="."]
+
+[node name="Terrain" type="Node2D" parent="Scroll"]
+script = ExtResource("1_e2uvk")
+_terrainScene = ExtResource("2_hy274")
+_waterScene = ExtResource("4_303fv")
+_minOffset = 150.0
+_straightLineOccurrence = 0.4
+_maxYStep = 300.0
+_sectionLength = 20000.0
+_bifurcationOccurrence = 0.05
+_bifurcationLength = 2000.0
+
+[node name="BoatEnemy" parent="Scroll" instance=ExtResource("4_qtgvv")]
+position = Vector2(576, 190)
+
+[node name="Player" parent="." instance=ExtResource("4_ropah")]
+position = Vector2(576, 450)
+_startPos = Vector2(576, 500)
