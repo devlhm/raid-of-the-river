@@ -10,17 +10,18 @@ size = Vector2(25, 121.5)
 size = Vector2(35.5, 134)
 
 [node name="BoatEnemy" type="CharacterBody2D" node_paths=PackedStringArray("_raycast")]
-scale = Vector2(0.8, 0.8)
+scale = Vector2(0.5, 0.5)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_feqvw")
-_speed = 100.0
 _raycast = NodePath("RayCast2D")
+Speed = 100.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_02o75")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-18, 0)
 target_position = Vector2(0, -150)
 collision_mask = 512
 

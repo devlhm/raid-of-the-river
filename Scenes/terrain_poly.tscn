@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bgaqdbxf8bm36"]
 
 [node name="T" type="StaticBody2D" groups=["terrain"]]
+z_index = 5
 collision_layer = 515
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

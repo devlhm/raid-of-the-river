@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://chpr8fie1dblg"]
+
+[ext_resource type="Script" path="res://Scripts/Bridge.cs" id="1_lik7s"]
+[ext_resource type="Script" path="res://Scenes/Checkpoint.cs" id="2_dc6n1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tuyo0"]
+size = Vector2(1152, 50)
+
+[node name="BridgeSegment" type="Node2D"]
+
+[node name="T" type="StaticBody2D" parent="." groups=["terrain"]]
+z_index = 5
+collision_layer = 515
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="T"]
+polygon = PackedVector2Array(0, 648, 0, 0, 300, 0, 300, 648)
+
+[node name="Polygon2D" type="Polygon2D" parent="T"]
+color = Color(0.31327, 0.750199, 0.40626, 1)
+polygon = PackedVector2Array(0, 648, 0, 0, 300, 0, 300, 648)
+
+[node name="T2" type="StaticBody2D" parent="." groups=["terrain"]]
+z_index = 5
+collision_layer = 515
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="T2"]
+polygon = PackedVector2Array(852, 648, 852, 0, 1152, 0, 1152, 648)
+
+[node name="Polygon2D" type="Polygon2D" parent="T2"]
+color = Color(0.31327, 0.750199, 0.40626, 1)
+polygon = PackedVector2Array(852, 648, 852, 0, 1152, 0, 1152, 648)
+
+[node name="Bridge" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_lik7s")
+
+[node name="Polygon2D" type="Polygon2D" parent="Bridge"]
+z_index = 6
+color = Color(0.386845, 0.232203, 0.0591095, 1)
+polygon = PackedVector2Array(-10, 275, -10, 450, 1162, 450, 1162, 275)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bridge"]
+polygon = PackedVector2Array(-10, 285, -10, 440, 1162, 440, 1162, 285)
+
+[node name="Hurtbox" type="Area2D" parent="Bridge"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bridge/Hurtbox"]
+polygon = PackedVector2Array(-10, 275, -10, 450, 1162, 450, 1162, 275)
+
+[node name="Checkpoint" type="Area2D" parent="."]
+collision_layer = 0
+script = ExtResource("2_dc6n1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint"]
+position = Vector2(576, -202)
+shape = SubResource("RectangleShape2D_tuyo0")

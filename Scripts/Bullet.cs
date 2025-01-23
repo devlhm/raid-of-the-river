@@ -36,9 +36,13 @@ public partial class Bullet : Area2D
 
 	private void OnAreaEntered(Area2D area)
 	{
+		if (area.GetParent() is BoatEnemy { Disabled: true })
+			return; 
+		
 		_timer.Paused = true;
 
 		var delete = true;
+	
 		if (area.GetParent() is IDamageable damageable)
 			delete = damageable.TryDamage(1);
 

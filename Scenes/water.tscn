@@ -1,4 +1,13 @@
-[gd_scene format=3 uid="uid://b5bph80niu45x"]
+[gd_scene load_steps=2 format=3 uid="uid://b5bph80niu45x"]
 
-[node name="Water" type="Polygon2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_djefw"]
+
+[node name="StaticBody2D" type="StaticBody2D"]
+collision_layer = 0
+collision_mask = 256
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+material = SubResource("ShaderMaterial_djefw")
 color = Color(0.122257, 0.517276, 1, 1)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

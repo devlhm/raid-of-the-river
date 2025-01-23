@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgrfth7qbc23r"]
+[gd_scene load_steps=8 format=3 uid="uid://cgrfth7qbc23r"]
 
 [ext_resource type="Script" path="res://Scripts/Terrain.cs" id="1_e2uvk"]
 [ext_resource type="Script" path="res://Scripts/Main.cs" id="1_ounfn"]
@@ -6,28 +6,48 @@
 [ext_resource type="PackedScene" uid="uid://b5bph80niu45x" path="res://Scenes/water.tscn" id="4_303fv"]
 [ext_resource type="PackedScene" uid="uid://bd4syotvcej4j" path="res://Scenes/boat_enemy.tscn" id="4_qtgvv"]
 [ext_resource type="PackedScene" uid="uid://8t1ffq885ink" path="res://Scenes/player.tscn" id="4_ropah"]
+[ext_resource type="PackedScene" uid="uid://chpr8fie1dblg" path="res://Scenes/bridge.tscn" id="5_s5fk5"]
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("_scroll")]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("_scroll", "_player", "_terrain")]
 script = ExtResource("1_ounfn")
 _scroll = NodePath("Scroll")
-_scrollSpeed = 200.0
+_baseScrollSpeed = 300.0
+_minScrollSpeedMult = 0.0
+_player = NodePath("Player")
+_terrain = NodePath("Scroll/Terrain")
 
 [node name="Scroll" type="Node2D" parent="."]
 
 [node name="Terrain" type="Node2D" parent="Scroll"]
 script = ExtResource("1_e2uvk")
+_useManualSeed = true
+_manualSeed = 3673013705
 _terrainScene = ExtResource("2_hy274")
 _waterScene = ExtResource("4_303fv")
-_minOffset = 150.0
-_straightLineOccurrence = 0.4
-_maxYStep = 300.0
-_sectionLength = 20000.0
-_bifurcationOccurrence = 0.05
-_bifurcationLength = 2000.0
-
-[node name="BoatEnemy" parent="Scroll" instance=ExtResource("4_qtgvv")]
-position = Vector2(576, 190)
+_bridgeScene = ExtResource("5_s5fk5")
+_maxOffset = 500.0
+_sectionLength = 5000.0
+_bifurcationOccurrence = 0.0
+_bifurcationLength = 800.0
+_enemiesPerSection = 0
+_boatEnemyScene = ExtResource("4_qtgvv")
+_boatRatio = 1.0
+_helicopterRatio = 0.0
+_jetRatio = 0.0
 
 [node name="Player" parent="." instance=ExtResource("4_ropah")]
 position = Vector2(576, 450)
+_lives = 99
 _startPos = Vector2(576, 500)
+_minYPos = 500.0
+_maxYPos = 430.0
+
+[node name="Line2D" type="Line2D" parent="."]
+z_index = 50
+points = PackedVector2Array(300, 0, 300, 648)
+width = 2.0
+
+[node name="Line2D2" type="Line2D" parent="."]
+z_index = 50
+points = PackedVector2Array(852, 0, 852, 648)
+width = 2.0

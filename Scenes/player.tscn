@@ -49,6 +49,7 @@ _data = {
 size = Vector2(80, 69)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_hurtbox", "_animPlayer", "_invincibilityTimer", "_shootingComponent") groups=["player"]]
+scale = Vector2(0.7, 0.7)
 motion_mode = 1
 script = ExtResource("1_12rod")
 _hurtbox = NodePath("Hurtbox")
@@ -72,12 +73,15 @@ libraries = {
 
 [node name="ShootingComponent" parent="." instance=ExtResource("3_jrtqt")]
 position = Vector2(0, -58)
-_shotsPerSecond = 10
-_bulletSpeed = 500.0
+_shotsPerSecond = 4
+_bulletSpeed = 300.0
+_bulletTtl = 1.0
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
+monitoring = false
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, 9.5)
